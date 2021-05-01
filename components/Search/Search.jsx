@@ -32,6 +32,7 @@ const Search = ({
 }) => {
   const { query, pathname, replace } = useRouter();
   const { user } = useAuth();
+  // user.hasInspectorPermission = true; // add google group cookie and remove
   const { SearchForm, SearchResults, useSearch } = useMemo(
     () =>
       type === 'records'

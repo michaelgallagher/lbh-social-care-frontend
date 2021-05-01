@@ -179,6 +179,7 @@ export interface User {
   hasChildrenPermissions: boolean;
   hasAllocationsPermissions?: boolean;
   hasUnrestrictedPermissions?: boolean;
+  hasInspectorPermission?: boolean;
   isAuthorised: boolean;
 }
 

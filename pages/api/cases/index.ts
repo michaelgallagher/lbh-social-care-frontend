@@ -2,6 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 
 import { getCases, addCase } from 'lib/cases';
 import { isAuthorised } from 'utils/auth';
+import inspectionCases from 'data/inspection/cases';
 
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
 
@@ -14,6 +15,13 @@ const endpoint: NextApiHandler = async (
     return res.status(StatusCodes.UNAUTHORIZED).end();
   }
   if (!user.isAuthorised) {
+    return res.status(StatusCodes.FORBIDDEN).end();
+  }
+
+  if (
+    user.hasInspectorPermission &&
+    !inspectionCases.includes(req.query.record_id as string)
+  ) {
     return res.status(StatusCodes.FORBIDDEN).end();
   }
   switch (req.method) {

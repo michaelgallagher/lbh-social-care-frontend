@@ -5,7 +5,9 @@ import isPostcodeValid from 'uk-postcode-validator';
 
 import { TextInput, DateInput } from 'components/Form';
 import Button from 'components/Button/Button';
-
+import { useAuth } from 'components/UserContext/UserContext';
+import { User } from 'types';
+import ErrorMsg from 'components/ErrorMessage/ErrorMessage';
 interface FormValues {
   first_name?: string;
   last_name?: string;
@@ -35,6 +37,13 @@ const SearchResidentsForm = ({
   } = useForm({
     defaultValues,
   });
+  const { user } = useAuth() as { user: User };
+
+  if (user?.hasInspectorPermission) {
+    return (
+      <ErrorMsg label="You do not have permission to access this feature" />
+    );
+  }
   return (
     <form role="form" onSubmit={handleSubmit((data) => onFormSubmit(data))}>
       <div className="govuk-grid-row">
