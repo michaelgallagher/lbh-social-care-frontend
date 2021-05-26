@@ -8,8 +8,6 @@ import { getData } from 'utils/saveData';
 import { getUserType } from 'utils/user';
 import Logo from './Logo';
 
-const { NEXT_PUBLIC_MAINTENANCE_MODE } = process.env;
-
 const loggedNavLinks = [
   {
     name: 'Search',
