@@ -34,7 +34,11 @@ const PersonPage = (): React.ReactElement => {
             {canViewArea(user) ? <WarningNotes id={personId} /> : <></>}
             <PersonDetails person={person} />
             <AllocatedWorkers person={person} />
-            {canViewArea(user) ? <Relationships id={personId} /> : <></>}
+            {canViewArea(user) ? (
+              <Relationships id={personId} person={person} />
+            ) : (
+              <></>
+            )}
             <Cases id={personId} person={person} />
           </Stack>
         )}
