@@ -49,6 +49,7 @@ export interface Form {
   id: string;
   name: string;
   steps: Step[];
+  sideEffect?: (answers: FlexibleAnswers) => void;
 }
 
 interface RepeaterGroupAnswer {
